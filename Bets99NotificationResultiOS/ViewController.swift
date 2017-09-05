@@ -13,11 +13,12 @@ import SVProgressHUD
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
-
+    
     
     var jogos: [Jogo] = [Jogo]()
+    var index = 0
     private let refreshControl = UIRefreshControl()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
         
         refreshControl.attributedTitle = NSAttributedString(string: "Reload...",attributes: nil)
-
+        
         refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Fetch Weather Data
         getResults()
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         SVProgressHUD.show()
@@ -60,7 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     // MARK: - Table view data source
-
+    
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell: ResultsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ResultsTableViewCell", for: indexPath) as! ResultsTableViewCell
@@ -80,7 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         if let startDate = jogo.startDate {
-             cell.data.text = startDate
+            cell.data.text = startDate
         }
         
         return cell
@@ -89,9 +90,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
+        
+        if let timeCasa = jogos[indexPath.row].nameHomeTeam{
+            UserDefaults.standard.setValue(timeCasa, forKey: "time_casa_selecionado")
+        }
+        if let timeFora = jogos[indexPath.row].nameFgTeam {
+            UserDefaults.standard.setValue(timeFora, forKey: "time_fora_selecionado")
+        }
+        if let data = jogos[indexPath.row].startDate {
+            UserDefaults.standard.setValue(data, forKey: "data_selecionado")
+        }
+        if let id = jogos[indexPath.row].id {
+            UserDefaults.standard.setValue(id, forKey: "id_selecionado")
+        }
 
-    
+    }
     
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath){
@@ -110,14 +123,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return self.jogos.count
     }
     
+    
     // REQUEST: - Requisicao get
     func getResults() {
-//        SVProgressHUD.show()
+        //        SVProgressHUD.show()
         do {
             
             let urlString = "http://api.bets99.com/index.php/apimobile/listNoResultGames"
             let url = URL(string: urlString)
-
+            
             URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
                 guard let data = data, error == nil else { return }
                 
@@ -155,6 +169,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }).resume()
         }
+        
     }
     
     class Jogo {
@@ -169,5 +184,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "partidaSegue" {
+//            if let viewController: PartidaViewController = segue.destination as? PartidaViewController {
+//                
+//                if let jogo: Jogo = self.jogos[self.index] {
+//                    
+//                    if let casa = jogo.nameHomeTeam{
+//                        viewController.casa = casa
+//                    }
+//                    
+//                    if let fora = jogo.nameFgTeam{
+//                        viewController.fora = fora
+//                    }
+//                    
+//                }
+//                
+//            }
+//        }
+//        
+//    }
     
 }
