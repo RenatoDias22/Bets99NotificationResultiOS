@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         SVProgressHUD.show()
         tableView.delegate = self;
         tableView.dataSource = self;
+        getResults()
         tableView.separatorColor = UIColor.white
         
         // Add Refresh Control to Table View
@@ -39,6 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
         
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         SVProgressHUD.show()
         getResults()
         self.tableView.reloadData()
-        SVProgressHUD.dismiss()
     }
     
     
@@ -104,13 +105,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             UserDefaults.standard.setValue(id, forKey: "id_selecionado")
         }
 
-    }
-    
-    @available(iOS 2.0, *)
-    public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath){
-        SVProgressHUD.show()
-        tableView.reloadData()
-        SVProgressHUD.dismiss()
     }
     
     @available(iOS 2.0, *)
@@ -184,26 +178,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "partidaSegue" {
-//            if let viewController: PartidaViewController = segue.destination as? PartidaViewController {
-//                
-//                if let jogo: Jogo = self.jogos[self.index] {
-//                    
-//                    if let casa = jogo.nameHomeTeam{
-//                        viewController.casa = casa
-//                    }
-//                    
-//                    if let fora = jogo.nameFgTeam{
-//                        viewController.fora = fora
-//                    }
-//                    
-//                }
-//                
-//            }
-//        }
-//        
-//    }
-    
 }

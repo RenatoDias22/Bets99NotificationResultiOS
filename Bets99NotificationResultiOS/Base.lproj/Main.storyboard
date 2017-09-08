@@ -253,16 +253,26 @@
                                     <constraint firstItem="DK2-0s-IJp" firstAttribute="width" secondItem="bro-lc-Gxy" secondAttribute="width" id="yM9-T5-fag"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pK3-Po-kGz">
+                                <rect key="frame" x="100" y="501" width="148" height="41"/>
+                                <state key="normal" title="Pesquisar no google"/>
+                                <connections>
+                                    <action selector="PesquisarPartida:" destination="RFI-lo-wlv" eventType="touchUpInside" id="P0G-61-sTq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pK3-Po-kGz" firstAttribute="leading" secondItem="aC7-ze-uF9" secondAttribute="leadingMargin" constant="84" id="1nI-Lw-KFw"/>
                             <constraint firstItem="JaP-xd-gqM" firstAttribute="trailing" secondItem="aC7-ze-uF9" secondAttribute="trailingMargin" id="3IZ-qK-idI"/>
                             <constraint firstItem="OFs-Sp-oUo" firstAttribute="top" secondItem="JaP-xd-gqM" secondAttribute="bottom" constant="41" id="3bN-rZ-ZTb"/>
                             <constraint firstItem="JaP-xd-gqM" firstAttribute="leading" secondItem="aC7-ze-uF9" secondAttribute="leadingMargin" id="80R-vh-80r"/>
                             <constraint firstItem="OFs-Sp-oUo" firstAttribute="width" secondItem="JaP-xd-gqM" secondAttribute="width" id="KoS-Nw-udT"/>
                             <constraint firstItem="OFs-Sp-oUo" firstAttribute="height" secondItem="JaP-xd-gqM" secondAttribute="height" constant="-34" id="Nsh-Xh-hAt"/>
+                            <constraint firstItem="pK3-Po-kGz" firstAttribute="top" relation="lessThanOrEqual" secondItem="OFs-Sp-oUo" secondAttribute="bottom" constant="80" id="QYn-x6-37r"/>
                             <constraint firstItem="JaP-xd-gqM" firstAttribute="top" secondItem="XKt-8j-c1m" secondAttribute="bottom" constant="48" id="Qb9-TP-187"/>
-                            <constraint firstItem="WIY-QT-UZk" firstAttribute="top" secondItem="OFs-Sp-oUo" secondAttribute="bottom" constant="246" id="rcA-aQ-ecv"/>
+                            <constraint firstItem="WIY-QT-UZk" firstAttribute="top" relation="lessThanOrEqual" secondItem="pK3-Po-kGz" secondAttribute="bottom" constant="125" id="mAy-Pp-mR2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pK3-Po-kGz" secondAttribute="trailing" constant="111" id="pbl-xu-MMp"/>
                             <constraint firstItem="OFs-Sp-oUo" firstAttribute="leading" secondItem="JaP-xd-gqM" secondAttribute="leading" id="t9j-SS-Q4I"/>
                         </constraints>
                     </view>

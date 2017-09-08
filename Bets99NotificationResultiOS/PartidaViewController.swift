@@ -116,8 +116,36 @@ class PartidaViewController: UIViewController, UITextViewDelegate {
         }
         
     }
-    
 
+    @IBAction func PesquisarPartida(_ sender: Any) {
+        
+        
+        let casa: String = timeCasa.text!
+        
+        let casaReplaced = String(casa.characters.map {
+            $0 == " " ? "+" : $0
+        })
+        
+        let fora: String  = timeFora.text!
+        
+        let foraReplaced = String(fora.characters.map {
+            $0 == " " ? "+" : $0
+        })
+        
+        let data: String  = dataPartida.text!
+        
+        let data1 = data.replacingOccurrences(of: "/", with: "%2F")
+       
+        let endIndex = data1.index(data1.endIndex, offsetBy: -6)
+        let truncated = data1.substring(to: endIndex)
+
+        if let url = NSURL(string: "http://www.google.com/search?q=\(casaReplaced)+vs+\(foraReplaced)+\(truncated)"){
+            
+            
+            UIApplication.shared.open(url as URL)
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
