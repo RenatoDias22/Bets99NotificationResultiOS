@@ -277,7 +277,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bets99 Resultados" id="JuX-3Z-od8">
-                        <barButtonItem key="rightBarButtonItem" title="ok" id="BLa-e7-KDM">
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="BLa-e7-KDM">
                             <connections>
                                 <action selector="EnviarResultados:" destination="RFI-lo-wlv" id="5Bf-Dt-nLa"/>
                             </connections>
