@@ -85,6 +85,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.data.text = startDate
         }
         
+        
+        SVProgressHUD.dismiss()
         return cell
         
     }
@@ -104,6 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let id = jogos[indexPath.row].id {
             UserDefaults.standard.setValue(id, forKey: "id_selecionado")
         }
+        
 
     }
     
@@ -154,7 +157,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self.jogos.append(jogo)
                     }
                     
-                    SVProgressHUD.dismiss()
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                     
